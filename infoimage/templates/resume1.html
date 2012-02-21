@@ -1,0 +1,118 @@
+<html>
+<meta charset=utf-8>
+<head>
+<script type="text/javascript" src="{{
+	url_for("static",filename="jquery.min.js")}}"></script>
+<script type="text/javascript" src="{{
+	url_for("static",filename="resume.js")}}"></script>
+
+<script type="text/javascript">
+	$(function(){
+	$('#finish').bind('click',function(){
+		$.getJSON('/resume/getTranslatedResume',{
+			inInfo: out()//"{\"fundamental\":{\"starttime\":2010,\"endtime\":2015},\"studys\":[{\"skillname\":\"c\",\"begintime\":201006,\"evaluates\":[{\"time\":201010,\"score\":3},{\"time\":201012,\"score\":4}]},{\"skillname\":\"java\",\"begintime\":201006,\"evaluates\":[{\"time\":201110,\"score\":3},{\"time\":201112,\"score\":4}]}],\"works\":[{\"company\":\"Microsoft\",\"position\":\"typewriter\",\"begintime\":201010,\"endtime\":201102,\"score\":2},{\"company\":\"Microsoft\",\"position\":\"programer\",\"begintime\":201110,\"endtime\":201205,\"score\":2}]}"
+			},function(data){
+			$("#outjson").html(data.result)
+			drawResume(data.result);
+			});
+		 $('#res').html(out());
+		});
+	});
+</script>
+<style type="text/css">
+label{
+text-align:right; 
+width:120px; float:left;}
+input{
+width:160px;
+}
+fieldset.a{width:340px;}
+#screen{margin-left:50px;
+background-color:#FFFF99;}
+#resume{margin-left:50px;
+background-color:#66FF33;
+width:200px;
+height:40px;}
+</style>
+</head>
+<body>
+	<h1>TEXT</h1>
+	<p id=res></p>
+	<p id=outjson></p>
+	<center>
+	<form name="input" action="#">
+	<table border="0">
+	<tr>
+	<td>
+	<fieldset class="a">
+		 <legend><b>fundamental:</b></legend>
+		 <div><label>people:</label><input type="text" id="people" /></div>
+		 <div><label>age:</label><input type="text" id="age" /></div>
+		 <div><label>address:</label><input type="text" id="address" /></div>
+		 <div><label>phone:</label><input type="text" id="phone" /></div>
+		 <div><label>starttime:</label><input type="text" id="starttime" /></div>
+		 <div><label>endtime:</label><input type="text" id="endtime" /></div>
+	</fieldset>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<fieldset class="a">
+		 <legend><b>study:</b></legend>
+		 <div id="study">
+		 <fieldset>
+		 <div>
+		 <label>skillname:</label>
+		 <input type="text" id="skillname0" style="width:140px" />
+		 </div>
+		 <dl id="0evaluate">
+		 <dt><p style="margin:30px">evaluate:</p></dt>
+		 <dd><div>time: <input type="text" id="time00" /></div></dd>
+		 <dd>score:<input type="text" id="studyscore00" /></dd>
+		 </dl>
+		 <center><button type="button" onclick="addevaluate(this)">add</button></center>
+		 </fieldset>
+		 </div>
+		 <div style="text-align:right"><button type="button" onclick="addstudy()">add</button></div>
+	</fieldset>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<fieldset class="a">
+		 <legend><b>work:</b></legend>
+		 <div id="work">
+		 <fieldset>
+		 <div><label>company:</label><input type="text" id="company0" /></div>
+		 <div><label>position:</label><input type="text" id="position0" /></div>
+		 <div><label>begintime:</label><input type="text" id="begintime0" /></div>
+		 <div><label>endtime:</label><input type="text" id="workendtime0" /></div>
+		 <div><label>score:</label><input type="text" id="score0" /></div>
+		 </fieldset>
+		 </div>
+		 <div style="text-align:right"><button type="button" onclick="addwork()">add</button></div>
+	</fieldset>
+	</td>
+	</tr>
+	<tr>
+	<td>
+	<fieldset class="a">
+		 <legend><b>wanted:</b></legend>
+		 <div><label>job:</label><input type="text" id="job" /></div>
+		 <div><label>salary:</label><input type="text" id="salary" /></div>
+		 <div><label>holiday:</label><input type="text" id="holiday" /></div>
+	</fieldset>
+	</td>
+	</tr>
+	</table>
+	<button type="button" id="finish">Finish</button><button type="reset">Reset</button>
+	</form>
+	</form>
+	</center>
+
+	<canvas    id="screen" width="1200"  height="500"></canvas>
+	<script type="text/javascript" src="{{
+	url_for("static",filename="json_parse.js")}}"></script>
+
+</body>
+</html>

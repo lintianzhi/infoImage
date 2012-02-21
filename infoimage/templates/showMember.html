@@ -1,0 +1,38 @@
+<html>
+<meta charset="utf-8">
+<head>
+	<script type="text/javascript" src="{{ 
+		url_for("static",filename="jquery.min.js")}}"></script>
+	<script type="text/javascript" src="{{
+		url_for("static",filename="resume.js")}}"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+				$(".showResume").click(function(){
+					var resume = $(this).prevAll(".resume").children(".text").text();
+					drawResume(resume);
+					});
+				});
+	</script>
+</head>
+<body>
+	{% if resumes %}
+		{% set num=0 %}
+		{% for resume in resumes %}
+		<div>
+			<p class="resume">
+				<span class="text">{{ resume["outresume"]}}</span>
+			<p>
+			<p>{{ resume["uptime"] }}</p>
+			<p class="resumeId">{{resume["id"]}}</p>
+			<input type=submit value="Show" class="showResume">
+			{% if isself %}
+			<a href="{{ url_for(".deleteResume",username=resume["username"],resumeNum=resume["id"]) }}"><input type=submit value="delete" class="deleteResume"></a>
+			{% endif  %}
+		</div>
+		{% endfor %}
+	{% endif %}
+	<canvas    id="screen" width="1200"  height="500"></canvas>
+		<script type="text/javascript" src="{{
+		url_for("static",filename="json_parse.js")}}"></script>
+</body>
+</html>
