@@ -3,28 +3,24 @@
 <title> Welcome </title>
 <body>
 <p id=error>{{error}}</p>
-<form action="{{ url_for('.regisit')}}" method=post>
+<form action="{{ url_for('.RegisitFromLinkedIn')}}" method=post>
 <table frame="box">
 	<tr>
 		<th>Username:</th>
 		<th><input type=text name=username></th>
 	</tr>
 	<tr>
-		<th>Nickname:</th>
-		<th><input type=text name=nickname></th>
-	</tr>
-	<tr>
 		<th>Password:</th>
 		<th><input type=password name=password></th>
 	</tr>
 	<tr>
-		<th>Email:</th>
-		<th><input type=text name=email></th>
+        <th>PIN:</th>
+        <th><input type=text name=pin></th>
+        <th><a href="{{ request_url }}" target="_blank">GET PIN</a></th>
 	</tr>
 	<tr>
 		<th></th>
 		<th><input type=submit value=Regist></th>
-        <th><a href="{{ url_for('.RegisitFromLinkedIn')}}">LinkedIn</a></th>
 	</tr>
 </table>
 </form>
