@@ -15,6 +15,12 @@ create table resumes(
 		uptime date not null default (datetime('now','localtime')),
 		foreign key (username) references users(username) on delete cascade
 		);
+create table OriResumes(
+        id integer primary key autoincrement,
+        inresume string not null,
+        username string not null,
+        foreign key (username) references users(username) on delete cascade
+        );
 create table LinkedInToken(
         username string primary key,
         Token string not null,

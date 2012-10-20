@@ -1,14 +1,15 @@
 #coding=utf-8
 
 from flask import Flask,g,request,render_template
-from blueprints import resume,frontend
+from blueprints import resume,frontend,android
 from db import DB
 from jinja2.ext import do
 from jinja2 import Environment
 
 bps = (
 		(frontend,''),
-		(resume,"/resume"),
+		(resume,'/resume'),
+        (android,'/android')
 		)
 
 app = Flask(__name__)
@@ -17,7 +18,7 @@ app.config.from_pyfile("config.cfg")
 jinja_env = Environment(extensions=['jinja2.ext.do'])
 app.jinja_env.extensions.update(Environment(extensions=['jinja2.ext.do']).extensions)
 
-#register blueprints	
+#register blueprints
 for bp,url_prefix in bps:
 	app.register_blueprint(bp,url_prefix=url_prefix)
 
