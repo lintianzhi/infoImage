@@ -38,6 +38,7 @@ def getresume(rsid):
         return 'error'
     return rs['inresume']
 
+
 @android.route('/pushresume/<resumestr>')
 def pushresume(resumestr):
     rs = simplejson.loads(resumestr)
@@ -50,3 +51,19 @@ def pushresume(resumestr):
         return 'error'
     return 'right'
 
+@android.route('/update/<resumestr>')
+def update(resumestr):
+    try:
+        rs = simplejson.loads(resumestr)
+        ID = rs['id']
+        oldrs = g.db.query_db('select * from OriResumes where id=?',
+                                [ID],one=True)
+        if not oldrs:
+            return 'error'
+        username = rs['username']
+        g.db.execute('delete from OriResumes where id=?',[ID])
+        g.db.execute('insert into OriResumes (id,username, inresume) values(?,?,?)', [ID,username,resumestr])
+        g.db.commit()
+        return 'right'
+    except:
+        return 'error'
