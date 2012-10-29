@@ -49,6 +49,8 @@ def pushresume(resumestr):
         g.db.commit()
     except:
         return 'error'
+    maxid = g.db.query_db('select max(id) from OriResumes',one=True)
+    return str(maxid['max(id)'])
     return 'right'
 
 @android.route('/update/<resumestr>')
