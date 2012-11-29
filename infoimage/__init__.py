@@ -7,10 +7,10 @@ from jinja2.ext import do
 from jinja2 import Environment
 
 bps = (
-		(frontend,''),
-		(resume,'/resume'),
+        (frontend,''),
+        (resume,'/resume'),
         (android,'/android')
-		)
+        )
 
 app = Flask(__name__)
 app.config.from_pyfile("config.cfg")
@@ -20,21 +20,21 @@ app.jinja_env.extensions.update(Environment(extensions=['jinja2.ext.do']).extens
 
 #register blueprints
 for bp,url_prefix in bps:
-	app.register_blueprint(bp,url_prefix=url_prefix)
+    app.register_blueprint(bp,url_prefix=url_prefix)
 
 @app.before_request
 def before_request():
-	if not hasattr(g,"db"):
-		g.db = DB()
-	g.db.connect_db()
+    if not hasattr(g,"db"):
+        g.db = DB()
+    g.db.connect_db()
 @app.teardown_request
 def teardown_request(exception):
-	if hasattr(g,'db'):
-		g.db.close()
+    if hasattr(g,'db'):
+        g.db.close()
 
 @app.route("/test/")
 def test():
-	return render_template("test.html")
+    return render_template("test.html")
 if __name__=="__main__":
-	app.run()
+    app.run()
 
