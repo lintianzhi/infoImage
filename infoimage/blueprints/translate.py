@@ -7,10 +7,17 @@ def getColor():
     return randint(0,256),randint(0,256),randint(0,256)
 class Translate:
     def __init__(self,info=None):
+        print 'in Translate'
+        print info
+        print type(info)
+        print info.strip(' ')
         try:
             self.info = simplejson.loads(info)
-#        except JSONDecodeError,e:
-#            print e
+            self.info["fundamental"]["starttime"] = \
+            self.info["fundamental"]["starttime"] /100
+            self.info["fundamental"]["endtime"] = \
+            self.info["fundamental"]["endtime"] /100
+            
         except Exception,e:
             print e
     def tojson(self):
@@ -93,7 +100,7 @@ class Translate:
         self.out["histograms"],hisDescribes = self.getHistograms()
         self.out["describes"] = lineDescribes+hisDescribes
 if __name__ == "__main__":
-    a = "{\"fundamental\":{\"starttime\":2010,\"endtime\":2015},\"studys\":[{\"skillname\":\"c\",\"begintime\":201006,\"evaluates\":[{\"time\":201010,\"score\":3},{\"time\":201012,\"score\":4}]},{\"skillname\":\"java\",\"begintime\":201006,\"evaluates\":[{\"time\":201110,\"score\":3},{\"time\":201112,\"score\":4}]}],\"works\":[{\"company\":\"Microsoft\",\"position\":\"typewriter\",\"begintime\":201010,\"endtime\":201102,\"score\":2},{\"company\":\"Microsoft\",\"position\":\"programer\",\"begintime\":201110,\"endtime\":201205,\"score\":2}]}"
+    a = "{\"fundamental\":{\"starttime\":201000,\"endtime\":201512},\"studys\":[{\"skillname\":\"c\",\"begintime\":201006,\"evaluates\":[{\"time\":201010,\"score\":3},{\"time\":201012,\"score\":4}]},{\"skillname\":\"java\",\"begintime\":201006,\"evaluates\":[{\"time\":201110,\"score\":3},{\"time\":201112,\"score\":4}]}],\"works\":[{\"company\":\"Microsoft\",\"position\":\"typewriter\",\"begintime\":201010,\"endtime\":201102,\"score\":2},{\"company\":\"Microsoft\",\"position\":\"programer\",\"begintime\":201110,\"endtime\":201205,\"score\":2}]}"
     tr = Translate(a)
     tr.tr1()
     print tr.tojson()
