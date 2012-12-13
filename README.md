@@ -2,9 +2,9 @@
 
 
 install step:
-#安装python
-#安装程序需要的库，（flask, oauth2）
-#就完成了。
+1, 安装python
+2, 安装程序需要的库，（flask, oauth2）
+3, 就完成了。
 
 run:
     python manage.py init # 初始化数据库
