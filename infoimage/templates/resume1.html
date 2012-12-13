@@ -1,118 +1,217 @@
 <html>
-<meta charset=utf-8>
-<head>
-<script type="text/javascript" src="{{
-	url_for("static",filename="jquery.min.js")}}"></script>
-<script type="text/javascript" src="{{
-	url_for("static",filename="resume.js")}}"></script>
+  <meta http-equiv="content-type" content="text/html"; charset="utf-8"/>
+  <head>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="jquery.js")}}"></script>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="bootstrap/js/bootstrap.js")}}"></script>
 
-<script type="text/javascript">
-	$(function(){
-	$('#finish').bind('click',function(){
-		$.getJSON('/resume/getTranslatedResume',{
-			inInfo: out()//"{\"fundamental\":{\"starttime\":2010,\"endtime\":2015},\"studys\":[{\"skillname\":\"c\",\"begintime\":201006,\"evaluates\":[{\"time\":201010,\"score\":3},{\"time\":201012,\"score\":4}]},{\"skillname\":\"java\",\"begintime\":201006,\"evaluates\":[{\"time\":201110,\"score\":3},{\"time\":201112,\"score\":4}]}],\"works\":[{\"company\":\"Microsoft\",\"position\":\"typewriter\",\"begintime\":201010,\"endtime\":201102,\"score\":2},{\"company\":\"Microsoft\",\"position\":\"programer\",\"begintime\":201110,\"endtime\":201205,\"score\":2}]}"
-			},function(data){
-			$("#outjson").html(data.result)
-			drawResume(data.result);
-			});
-		 $('#res').html(out());
-		});
-	});
-</script>
-<style type="text/css">
-label{
-text-align:right; 
-width:120px; float:left;}
-input{
-width:160px;
-}
-fieldset.a{width:340px;}
-#screen{margin-left:50px;
-background-color:#FFFF99;}
-#resume{margin-left:50px;
-background-color:#66FF33;
-width:200px;
-height:40px;}
-</style>
-</head>
-<body>
-	<h1>TEXT</h1>
-	<p id=res></p>
-	<p id=outjson></p>
-	<center>
-	<form name="input" action="#">
-	<table border="0">
-	<tr>
-	<td>
-	<fieldset class="a">
-		 <legend><b>fundamental:</b></legend>
-		 <div><label>people:</label><input type="text" id="people" /></div>
-		 <div><label>age:</label><input type="text" id="age" /></div>
-		 <div><label>address:</label><input type="text" id="address" /></div>
-		 <div><label>phone:</label><input type="text" id="phone" /></div>
-		 <div><label>starttime:</label><input type="text" id="starttime" /></div>
-		 <div><label>endtime:</label><input type="text" id="endtime" /></div>
-	</fieldset>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<fieldset class="a">
-		 <legend><b>study:</b></legend>
-		 <div id="study">
-		 <fieldset>
-		 <div>
-		 <label>skillname:</label>
-		 <input type="text" id="skillname0" style="width:140px" />
-		 </div>
-		 <dl id="0evaluate">
-		 <dt><p style="margin:30px">evaluate:</p></dt>
-		 <dd><div>time: <input type="text" id="time00" /></div></dd>
-		 <dd>score:<input type="text" id="studyscore00" /></dd>
-		 </dl>
-		 <center><button type="button" onclick="addevaluate(this)">add</button></center>
-		 </fieldset>
-		 </div>
-		 <div style="text-align:right"><button type="button" onclick="addstudy()">add</button></div>
-	</fieldset>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<fieldset class="a">
-		 <legend><b>work:</b></legend>
-		 <div id="work">
-		 <fieldset>
-		 <div><label>company:</label><input type="text" id="company0" /></div>
-		 <div><label>position:</label><input type="text" id="position0" /></div>
-		 <div><label>begintime:</label><input type="text" id="begintime0" /></div>
-		 <div><label>endtime:</label><input type="text" id="workendtime0" /></div>
-		 <div><label>score:</label><input type="text" id="score0" /></div>
-		 </fieldset>
-		 </div>
-		 <div style="text-align:right"><button type="button" onclick="addwork()">add</button></div>
-	</fieldset>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<fieldset class="a">
-		 <legend><b>wanted:</b></legend>
-		 <div><label>job:</label><input type="text" id="job" /></div>
-		 <div><label>salary:</label><input type="text" id="salary" /></div>
-		 <div><label>holiday:</label><input type="text" id="holiday" /></div>
-	</fieldset>
-	</td>
-	</tr>
-	</table>
-	<button type="button" id="finish">Finish</button><button type="reset">Reset</button>
-	</form>
-	</form>
-	</center>
+    <link rel="stylesheet" href="{{
+    url_for("static",filename="bootstrap/css/bootstrap.css")}}">
+    <style>
+      body{background:url({{url_for("static",filename="canvas.jpg")}})}
 
-	<canvas    id="screen" width="1200"  height="500"></canvas>
-	<script type="text/javascript" src="{{
-	url_for("static",filename="json_parse.js")}}"></script>
+    </style>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="resume.js")}}"></script>
 
-</body>
-</html>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="my.js")}}"></script>
+
+    <style type="text/css">
+      label{
+        text-align:right; 
+        width:120px; float:left;}
+      input{
+        width:160px;
+      }
+      #footer{ width:100#;
+        height:100px;}
+      fieldset.a{width:400px;}
+      #screen{margin-left:50px;
+        background:url()
+      }
+      #resume{margin-left:50px;
+        background-color:#66FF33;
+        width:300px;
+        height:40px;}
+      #nav{position:absolute;top:5px;left:380px;}
+      #nav a{font-size:30px;display:block;margin:10px;}
+      #nav a:hover{text-decoration:none;color:#003366}
+    </style>
+  </head>
+  <body>
+    <div style="position:absolute;top:0px;text-algin:center;height:100px;width:100%;background:#000;filter:alpha(opacity=50);
+      -moz-opacity:0.5;
+      -khtml-opacity: 0.5;
+      opacity: 0.5;"> 
+      <h1 style="color:#FFFFFF;position:absolute;right:30px;top:20px">infoImage</h1>
+      <div id="nav">
+        <a href="/">Home</a>
+        <a href="/member/{{username}}">Resumes</a>
+        <a href="/resume">New Resume</a>
+      </div>
+    </div>
+    <center style="margin-top:150px">
+      <form name="input" action="#">
+        <table border="0">
+          <tr>
+            <td>
+              <fieldset class="well a">
+                <legend><b>fundamental:</b></legend>
+                <div><label>people：</label><input type="text" id="people"/></div>
+                <div><label>age：</label><input type="text" id="age" /></div>
+                <div><label>address：</label><input type="text" id="address" /></div>
+                <div><label>phone：</label><input type="text" id="phone" /></div>
+                <label>starttime：</label><input type="text" id="starttime" onChange="checktime(this)"/>
+                <label>endtime：</label><input type="text" id="endtime" onChange="checktime(this)"/>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fieldset class="well a">
+                <legend><b>study:</b></legend>
+                <div id="study">
+                  <fieldset id="studyfieldset">
+                    <div id="skillnamediv">
+                      <label>skillname：</label>
+                      <input type="text" id="skillname0" style="width:140px" />
+                    </div>
+                    <dl id="0evaluate">
+                      <dt><p style="margin-top:30px">evaluate:</p></dt>
+                      <div><label>time:</label><input type="text" id="time00" onChange="checktime(this)"/></div>
+                      <div><label>score:</label><input type="text" id="studyscore00" onChange="checkscore(this)"/></div>
+                    </dl>
+                    <div style="text-align:center"><button class="btn btn-info"  onClick="addevaluate(this)" style="width:80px">add</button>
+                      <button class="btn btn-danger" type="button" onClick="undoevaluate(this)" style="visibility:hidden"
+                        id="uevaluatebutton0" style="width:80px">undo</button></div>
+                  </fieldset>
+                </div>
+                <div style="text-align:center;margin-top:20px"><button class="btn btn-info btn-large btn-block"  onClick="addstudy()">add</button>
+                  <button class="btn btn-danger btn-large btn-block" onClick="undostudy()" style="visibility:hidden" id="ustudybutton">undo</button>
+                </div>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fieldset class="well a">
+                <legend><b>work:</b></legend>
+                <div id="work">
+                  <fieldset id="workfieldset">
+                    <div id="companydiv"><label>company：</label><input type="text" id="company0" /></div>
+                    <div><label>position：</label><input type="text" id="position0" /></div>
+                    <div><label>begintime：</label><input type="text" id="begintime0" onChange="checktime(this)"/></div>
+                    <div><label>endtime：</label><input type="text" id="workendtime0" onChange="checktime(this)"/></div>
+                    <div><label>score：</label><input type="text" id="0score" onChange="checkscore(this)"/></div>
+                  </fieldset>
+                </div>
+                <div style="text-align:center"><button class="btn btn-info" type="button" onClick="addwork()" style="width:45px">add</button>
+                  <button class="btn btn-danger" type="button" onClick="undowork()" style="visibility:hidden" id="uworkbutton">undo</button>
+                </div>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fieldset class="well a">
+                <legend><b>wanted:</b></legend>
+                <div><label>job：</label><input type="text" id="job" /></div>
+                <div><label>salary：</label><input type="text" id="salary" /></div>
+                <div><label>holiday：</label><input type="text" id="holiday" /></div>
+              </fieldset>
+            </td>
+          </tr>
+        </table>
+        <button class="btn btn-info" type="button" onClick="out()" style="width:60px" id="finish">ok</button>
+        <button class="btn btn-info" type="reset" style="width:60px">reset</button>
+      </form>
+    </form>
+  </center>
+  <div id="show" style="display:none;">
+    <table class="table table-striped" style="width:1100px;margin-left:70px;background:#FFFFFF;">
+      <tr>
+        <td style="width:25%">
+          <h1>fundamental:</h1>
+        </td>
+        <td style="width:25%">
+        </td>
+        <td style="width:25%">
+          <h1>wanted:</h1>
+        </td>
+        <td style="width:25%"> 
+        </td>
+      </tr>
+      <tr><td>
+          people：
+        </td>
+        <td id="pe">
+
+        </td>
+        <td>
+          job：
+        </td>
+        <td id="jo">
+        </td>
+      </tr>
+      <tr><td>
+          age：
+        </td>
+        <td id="ag">
+        </td>
+        <td>
+          salary：
+        </td>
+        <td id="sa">
+        </td>
+      </tr>
+      <tr><td>
+          address：
+        </td>
+        <td id="ad">
+        </td>
+        <td>
+          holiday
+        </td>
+        <td id="who">
+        </td>
+      </tr>
+      <tr><td>
+          phone：
+        </td>
+        <td id="ph">
+        </td>
+      </tr>
+    </table>
+
+    <canvas style="margin-left:20px;" id="screen" width="1200"  height="500"></canvas>
+
+
+  </div>	
+
+  <script type="text/javascript" src="{{
+    url_for("static",filename="json_parse.js")}}"></script>
+
+  <script type="text/javascript" src="{{
+    url_for("static",filename="json_parse.js")}}"></script>
+
+
+
+  <script type="text/javascript">
+    $(function(){
+    $('#finish').bind('click',function(){
+        $.getJSON('/resume/getTranslatedResume',{
+          inInfo: out()
+          },function(data){
+         $("#outjson").html(data.result) 
+         drawResume(data.result);
+         });
+        $('#res').html(out())
+        });
+    });
+  </script>
+
+
+    </body>
+  </html>

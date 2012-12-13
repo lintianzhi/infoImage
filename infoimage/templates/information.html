@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <script type="text/javascript" src="my.js"></script>
+    <style type="text/css">
+      label{
+        text-align:right; 
+        width:120px; float:left;}
+      input{
+        width:160px;
+      }
+      fieldset.a{width:400px;}
+    </style>
+  </head>
+  <body>
+    <center>
+      <form name="input" action="#">
+        <table border="0">
+          <tr>
+            <td>
+              <fieldset class="a">
+                <legend><b>fundamental:</b></legend>
+                <div><label>people：</label><input type="text" id="people"/></div>
+                <div><label>age：</label><input type="text" id="age" /></div>
+                <div><label>address：</label><input type="text" id="address" /></div>
+                <div><label>phone：</label><input type="text" id="phone" /></div>
+                <label>starttime：</label><input type="text" id="starttime" onchange="checktime(this)"/>时间为6位整数
+                <label>endtime：</label><input type="text" id="endtime" onchange="checktime(this)"/>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fieldset class="a">
+                <legend><b>study:</b></legend>
+                <div id="study">
+                  <fieldset id="studyfieldset">
+                    <div id="skillnamediv">
+                      <label>skillname：</label>
+                      <input type="text" id="skillname0" style="width:140px" />
+                    </div>
+                    <dl id="0evaluate">
+                      <dt><p style="margin:30px">evaluate:</p></dt>
+                      <dd><div>time： <input type="text" id="time00" onchange="checktime(this)"/></div></dd>
+                      <dd>score：<input type="text" id="studyscore00" onchange="checkscore(this)"/>得分为0到10</dd>
+                    </dl>
+                    <center><button type="button" onclick="addevaluate(this)" style="width:45px">add</button></center>
+                    <center><button type="button" onclick="undoevaluate(this)" style="visibility:hidden" id="uevaluatebutton0">undo</button></center>
+                  </fieldset>
+                </div>
+                <div style="text-align:right"><button type="button" onclick="addstudy()" style="width:45px">add</button>
+                  <button type="button" onclick="undostudy()" style="visibility:hidden" id="ustudybutton">undo</button>
+                </div>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fieldset class="a">
+                <legend><b>work:</b></legend>
+                <div id="work">
+                  <fieldset id="workfieldset">
+                    <div id="companydiv"><label>company：</label><input type="text" id="company0" /></div>
+                    <div><label>position：</label><input type="text" id="position0" /></div>
+                    <div><label>begintime：</label><input type="text" id="begintime0" onchange="checktime(this)"/></div>
+                    <div><label>endtime：</label><input type="text" id="workendtime0" onchange="checktime(this)"/></div>
+                    <div><label>score：</label><input type="text" id="0score" onchange="checkscore(this)"/></div>
+                  </fieldset>
+                </div>
+                <div style="text-align:right"><button type="button" onclick="addwork()" style="width:45px">add</button>
+                  <button type="button" onclick="undowork()" style="visibility:hidden" id="uworkbutton">undo</button>
+                </div>
+              </fieldset>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <fieldset class="a">
+                <legend><b>wanted:</b></legend>
+                <div><label>job：</label><input type="text" id="job" /></div>
+                <div><label>salary：</label><input type="text" id="salary" /></div>
+                <div><label>holiday：</label><input type="text" id="holiday" /></div>
+              </fieldset>
+            </td>
+          </tr>
+        </table>
+        <button type="button" onclick="out()" style="width:60px">ok</button>
+        <button type="reset" style="width:60px">reset</button>
+      </form>
+    </form>
+  </center>
+
+</body>
+</html>

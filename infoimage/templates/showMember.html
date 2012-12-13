@@ -1,38 +1,65 @@
 <html>
-<meta charset="utf-8">
-<head>
-	<script type="text/javascript" src="{{ 
-		url_for("static",filename="jquery.min.js")}}"></script>
-	<script type="text/javascript" src="{{
-		url_for("static",filename="resume.js")}}"></script>
-	<script type="text/javascript">
-		$(document).ready(function(){
-				$(".showResume").click(function(){
-					var resume = $(this).prevAll(".resume").children(".text").text();
-					drawResume(resume);
-					});
-				});
-	</script>
-</head>
-<body>
-	{% if resumes %}
-		{% set num=0 %}
-		{% for resume in resumes %}
-		<div>
-			<p class="resume">
-				<span class="text">{{ resume["outresume"]}}</span>
-			<p>
-			<p>{{ resume["uptime"] }}</p>
-			<p class="resumeId">{{resume["id"]}}</p>
-			<input type=submit value="Show" class="showResume">
-			{% if isself %}
-			<a href="{{ url_for(".deleteResume",username=resume["username"],resumeNum=resume["id"]) }}"><input type=submit value="delete" class="deleteResume"></a>
-			{% endif  %}
-		</div>
-		{% endfor %}
-	{% endif %}
-	<canvas    id="screen" width="1200"  height="500"></canvas>
-		<script type="text/javascript" src="{{
-		url_for("static",filename="json_parse.js")}}"></script>
-</body>
-</html>
+  <meta charset="utf-8">
+  <head>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="jquery.js")}}"></script>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="bootstrap/js/bootstrap.js")}}"></script>
+
+    <link rel="stylesheet" href="{{
+    url_for("static",filename="bootstrap/css/bootstrap.css")}}">
+    <style>
+      body{background:url({{url_for("static",filename="canvas.jpg")}})}
+
+    </style>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="resume.js")}}"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $(".showResume").click(function(){
+            var resume = $(this).prevAll(".resume").children(".text").text();
+            drawResume(resume);
+            });
+          });
+        </script>
+
+        <style>
+          #nav{position:absolute;top:5px;left:380px;}
+          #nav a{font-size:30px;display:block;margin:10px;}
+          #nav a:hover{text-decoration:none;color:#003366}</style>
+      </head>
+      <body>
+        <div style="position:absolute;top:0px;text-algin:center;height:100px;width:100%;background:#000;filter:alpha(opacity=50);
+          -moz-opacity:0.5;
+          -khtml-opacity: 0.5;
+          opacity: 0.5;"> 
+          <h1 style="color:#FFFFFF;position:absolute;right:30px;top:20px">infoImage</h1>
+          <div id="nav">
+            <a href="/">Home</a>
+            <a href="">Resumes</a>
+            <a href="/resume">New Resume</a>
+          </div>
+        </div>
+        <div style="margin-top:150px;text-align:center">
+          {% if resumes %}
+          {% set num=0 %}
+          {% for resume in resumes %}
+          <div>
+            <p class="resume well">
+              <span class="text">{{ resume["outresume"]}}</span>
+              <p>
+                <p>{{ resume["uptime"] }}</p>
+                <p class="resumeId">{{resume["id"]}}</p>
+                <input type=submit value="Show" class="showResume btn-info">
+                {% if isself %}
+                <a href="{{ url_for(".deleteResume",username=resume["username"],resumeNum=resume["id"]) }}"><input type=submit value="delete" class="deleteResume btn-danger"></a>
+                {% endif  %}
+              </div>
+              {% endfor %}
+              {% endif %}
+              <canvas    id="screen" width="1200"  height="500"></canvas>
+            </div>
+            <script type="text/javascript" src="{{
+              url_for("static",filename="json_parse.js")}}"></script>
+          </body>
+        </html>

@@ -1,32 +1,86 @@
 <html>
-<meta http-equiv="content-type" content="text/html"; charset="utf-8"/>
-<title> Welcome </title>
-<body>
-{% if not "login" in session %}
-<form action="{{ url_for('.index')}}" method=post>
-<table frame="box">
-	<tr>
-		<th>Username:</th>
-		<th><input type=text name=username></th>
-	</tr>
-	<tr>
-		<th>Password:</th>
-		<th><input type=password name=password></th>
-	</tr>
-	<tr>
-		<th></th>
-		<th><input type=submit value=Login></th>
-		<th><a href="{{url_for(".regisit")}}">Regisit</a></th>
-	</tr>
-</table>
-{% endif %}
-{% if "login" in session %}
-	<a href="#">Modify Info</a>
-	<a href="{{url_for(".getUser",username=session["login"]["username"])}}">{{session["login"]["nickname"]}}</a>
-	<a href="{{url_for(".logout")}}">Log out</a>
-	<p><a href="resume">New Resume</a></p>
-{% endif %}
-</form>
-</body>
+
+  <head>
+    <meta http-equiv="content-type" content="text/html"; charset="utf-8"/>
+    <title> Welcome </title>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="jquery.js")}}"></script>
+    <script type="text/javascript" src="{{
+      url_for("static",filename="bootstrap/js/bootstrap.js")}}"></script>
+
+    <link rel="stylesheet" href="{{
+    url_for("static",filename="bootstrap/css/bootstrap.css")}}">
+    <link rel="stylesheet" href="{{
+    url_for("static",filename="main.css")}}">
+    <style>
+      body{background:url({{url_for("static",filename="canvas.jpg")}})}
+      #main{
+        margin:80px;
+
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div id="main">
+      <div id="myCarousel" class="carousel slide">
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <div class="active item">
+            <img src="{{url_for("static",filename="1.jpg")}}"/>
+          </div>
+          <div class="item">
+            <img src="{{url_for("static",filename="2.jpg")}}"/>
+          </div>
+          <div class="item">
+            <img src="{{url_for("static",filename="3.jpg")}}"/>
+          </div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      </div>
+
+      <div id="content" class="foldtl">
+
+        {% if not "login" in session %}
+
+        <h1 style="text-align:left">Login</h1>
+        <form action="{{ url_for('.index')}}" method=post>
+          <table >
+            <tr>
+              <th>Username:</th>
+              <th><input type=text name=username></th>
+            </tr>
+            <tr>
+              <th>Password:</th>
+              <th><input type=password name=password></th>
+            </tr>
+            <tr>
+
+              <th><input class="btn" type=submit value=Login></th>
+              <th><a class="btn" href="/regisit">regisit</a></th>
+            </tr>
+          </table>
+          {% endif %}
+          {% if "login" in session %}
+
+          <h1 style="text-align:left">Go on!</h1>
+          <!--          <p><a class="btn btn-large" style="width:100px;"href="#">Modify Info</a></p> -->
+          <p><a class="btn btn-large" style="width:100px;" href="{{url_for(".getUser",username=session["login"]["username"])}}">{{session["login"]["nickname"]}}</a></p>
+          <p><a class="btn btn-large" style="width:100px;" href="{{url_for(".logout")}}">Log out</a></p>
+          <p><a class="btn btn-large" style="width:100px;" href="/resume">New Resume</a></p>
+          {% endif %}
+        </form>
+      </div>
+
+    </div>
+
+    <script type="text/javascript">
+      $('.carousel').carousel()
+    </script>
+
+  </body>
 
 </html>

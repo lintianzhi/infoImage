@@ -1,33 +1,47 @@
 <html>
-<meta http-equiv="content-type" content="text/html"; charset="utf-8"/>
-<title> Welcome </title>
-<body>
-<p id=error>{{error}}</p>
-<form action="{{ url_for('.regisit')}}" method=post>
-<table frame="box">
-	<tr>
-		<th>Username:</th>
-		<th><input type=text name=username></th>
-	</tr>
-	<tr>
-		<th>Nickname:</th>
-		<th><input type=text name=nickname></th>
-	</tr>
-	<tr>
-		<th>Password:</th>
-		<th><input type=password name=password></th>
-	</tr>
-	<tr>
-		<th>Email:</th>
-		<th><input type=text name=email></th>
-	</tr>
-	<tr>
-		<th></th>
-		<th><input type=submit value=Regist></th>
-        <th><a href="{{ url_for('.RegisitFromLinkedIn')}}">LinkedIn</a></th>
-	</tr>
-</table>
-</form>
-</body>
+  <meta http-equiv="content-type" content="text/html"; charset="utf-8"/>
+  <title> Welcome </title>
+  <script type="text/javascript" src="{{
+    url_for("static",filename="jquery.js")}}"></script>
+  <script type="text/javascript" src="{{
+    url_for("static",filename="bootstrap/js/bootstrap.js")}}"></script>
+
+  <link rel="stylesheet" href="{{
+  url_for("static",filename="bootstrap/css/bootstrap.css")}}">
+  <link rel="stylesheet" href="{{
+  url_for("static",filename="main.css")}}">
+  <style>
+    body{background:url({{url_for("static",filename="canvas.jpg")}})}
+
+  </style>
+  <body>
+    <div class="foldtl" id="adiv">
+      <p id=error>{{error}}</p>
+      <form action="{{ url_for('.regisit')}}" method=post>
+        <table >
+          <tr>
+            <th>Username:</th>
+            <th><input type=text name=username></th>
+          </tr>
+          <tr>
+            <th>Nickname:</th>
+            <th><input type=text name=nickname></th>
+          </tr>
+          <tr>
+            <th>Password:</th>
+            <th><input type=password name=password></th>
+          </tr>
+          <tr>
+            <th>Email:</th>
+            <th><input type=text name=email></th>
+          </tr>
+          <tr>
+            <th></th>
+            <th><input type=submit value=Regist></th>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </body>
 
 </html>
